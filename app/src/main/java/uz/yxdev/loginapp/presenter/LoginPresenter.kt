@@ -7,6 +7,16 @@ class LoginPresenter(
     private val view: LoginScreen,
     private val repository: AuthRepository
 ) {
+
+    init {
+        if (repository.hasUser()){
+            view.showForgetPassword()
+            view.hideRegister()
+        }else{
+            view.hideForgetPassword()
+            view.showRegister()
+        }
+    }
     fun registerClick() {
         view.registerClick()
     }

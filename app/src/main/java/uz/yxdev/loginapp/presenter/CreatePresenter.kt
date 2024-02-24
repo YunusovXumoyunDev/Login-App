@@ -30,6 +30,7 @@ class CreatePresenter(
                     email = email,
                 )
                 view.success()
+                repository.createUser()
             } else {
                 view.confirmPasswordError()
             }

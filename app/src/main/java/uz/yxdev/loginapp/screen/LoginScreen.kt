@@ -3,6 +3,7 @@ package uz.yxdev.loginapp.screen
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import uz.yxdev.loginapp.R
@@ -26,9 +27,9 @@ class LoginScreen : Fragment(R.layout.screen_login) {
         binding.register.setOnClickListener {
             presenter.registerClick()
         }
-//        binding.signInBtn.setOnClickListener {
-//            presenter.signInClick()
-//        }
+        binding.signInBtn.setOnClickListener {
+            presenter.signInClick()
+        }
 
     }
 
@@ -43,16 +44,30 @@ class LoginScreen : Fragment(R.layout.screen_login) {
             addToBackStack(null)
         }
     }
+    fun showForgetPassword(){
+        binding.forgetPassword.isVisible=true
+    }
+    fun hideRegister(){
+        binding.registerLy.isVisible=false
+    }
+    fun hideForgetPassword(){
+        binding.forgetPassword.isVisible=false
+    }
+    fun showRegister(){
+        binding.registerLy.isVisible=true
+    }
 
     fun getLogin(): String = binding.loginEt.text.toString()
     fun getPassword(): String = binding.passwordEt.text.toString()
     fun signIn() {
         parentFragmentManager.commit {
+            setReorderingAllowed(true)
             replace(
                 R.id.fragment,
                 UserDetailScreen(),
                 "User Screen"
             )
+            addToBackStack(null)
         }
     }
 

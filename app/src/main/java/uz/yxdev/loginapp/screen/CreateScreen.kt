@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import uz.yxdev.loginapp.R
 import uz.yxdev.loginapp.data.repository.AuthRepository
 import uz.yxdev.loginapp.databinding.ScreenCreateBinding
 import uz.yxdev.loginapp.presenter.CreatePresenter
 
-class CreateScreen : Fragment() {
+class CreateScreen : Fragment(R.layout.screen_create) {
 
     private var _binding: ScreenCreateBinding? = null
     private val binding: ScreenCreateBinding get() = _binding!!

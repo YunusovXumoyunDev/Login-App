@@ -23,4 +23,8 @@ class AuthRepository(private val context: Context) {
     fun getName():String=storage.getString("name")
     fun getNumber():String=storage.getString("number")
     fun getEmail():String=storage.getString("email")
+    fun hasUser():Boolean=storage.getBoolean("isUserExist")
+    fun createUser(){
+        storage.saveBoolean("isUserExist",true)
+    }
 }
