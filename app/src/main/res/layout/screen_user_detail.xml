@@ -34,7 +34,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
     <LinearLayout
-        android:id="@+id/name"
+        android:id="@+id/name_ly"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="25dp"
         android:layout_width="match_parent"
@@ -50,6 +50,7 @@
             android:textSize="36sp"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:text="Xumoyun"
             android:textColor="@color/black"
@@ -57,7 +58,7 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/login"
+        android:id="@+id/login_ly"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="25dp"
         android:layout_width="match_parent"
@@ -65,7 +66,7 @@
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name">
+        app:layout_constraintTop_toBottomOf="@+id/name_ly">
         <TextView
             android:layout_width="wrap_content"
             android:text="Login:  "
@@ -73,6 +74,7 @@
             android:textSize="36sp"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/login"
             android:layout_width="wrap_content"
             android:text="Xumoyun123"
             android:textColor="@color/black"
@@ -80,7 +82,7 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/phone"
+        android:id="@+id/phone_ly"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="25dp"
         android:layout_width="match_parent"
@@ -88,7 +90,7 @@
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login">
+        app:layout_constraintTop_toBottomOf="@+id/login_ly">
         <TextView
             android:layout_width="wrap_content"
             android:text="Phone:  "
@@ -96,6 +98,7 @@
             android:textSize="36sp"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:text="937726204"
             android:textColor="@color/black"
@@ -103,7 +106,7 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/email"
+        android:id="@+id/email_ly"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="25dp"
         android:layout_width="match_parent"
@@ -111,7 +114,7 @@
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone">
+        app:layout_constraintTop_toBottomOf="@+id/phone_ly">
         <TextView
             android:layout_width="wrap_content"
             android:text="Email:  "
@@ -119,6 +122,7 @@
             android:textSize="36sp"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/email"
             android:layout_width="wrap_content"
             android:text="yunusovhumoyun13@gmail.com"
             android:textColor="@color/black"
