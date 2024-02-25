@@ -1,60 +1,95 @@
 package uz.yxdev.loginapp.screen
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import uz.yxdev.loginapp.R
+import uz.yxdev.loginapp.data.repository.AuthRepository
+import uz.yxdev.loginapp.databinding.ScreenForgetPasswordBinding
+import uz.yxdev.loginapp.presenter.ForgetPresenter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
+    private var _binding: ScreenForgetPasswordBinding? = null
+    private val binding: ScreenForgetPasswordBinding get() = _binding!!
+    private lateinit var repository: AuthRepository
+    private lateinit var presenter: ForgetPresenter
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ForgetPasswordScreen.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ForgetPasswordScreen : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        _binding = ScreenForgetPasswordBinding.bind(view)
+        repository = AuthRepository(requireContext())
+        presenter = ForgetPresenter(this, repository)
+        startLoadUi()
+        loadUiClickable()
+    }
+    private fun loadUiClickable(){
+        binding.sendLoginBtn.setOnClickListener {
+            presenter.sendLoginClick()
+        }
+        binding.sendCodeBtn.setOnClickListener {
+            presenter.sendCodeClick()
+        }
+        binding.enterBtn.setOnClickListener {
+            presenter.enterClick()
         }
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.screen_forget_password, container, false)
+    private fun startLoadUi() {
+        binding.loginEtLy.isVisible = true
+        binding.sendLoginBtn.isVisible = true
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ForgotPasswordScreen.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ForgetPasswordScreen().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun txtChange(txt: String) {
+        binding.txtLogin.text = txt
+    }
+
+    fun hideLogin() {
+        binding.loginEtLy.isVisible = false
+        binding.sendLoginBtn.isVisible = false
+    }
+
+    fun showCode() {
+        val phone = repository.getNumber()
+        txtChange("Ushbu $phone raqamga jo'natilgan SMS kodni kiriting")
+        binding.codeEtLy.isVisible = true
+        binding.codeTxt.isVisible = true
+        binding.code.isVisible = true
+        binding.sendCodeBtn.isVisible = true
+        binding.timer.isVisible=true
+    }
+
+    fun hideCode() {
+        binding.codeEtLy.isVisible = false
+        binding.codeTxt.isVisible = false
+        binding.code.isVisible = false
+        binding.sendCodeBtn.isVisible = false
+        binding.timer.isVisible=true
+    }
+
+    fun showPassword() {
+        txtChange("Yangi parolni kiriting")
+        binding.newPasswordEtLy.isVisible = true
+        binding.confirmNewPasswordEtLy.isVisible = true
+        binding.enterBtn.isVisible=true
+    }
+
+    fun getLogin(): String = binding.loginEt.text.toString()
+    fun getCode(): String = binding.codeEt.text.toString()
+    fun getPassword():String=binding.newPasswordEt.toString()
+    fun getConfirmPassword():String=binding.confirmNewPasswordEt.toString()
+    fun enterClick(){
+        parentFragmentManager.popBackStack()
+    }
+    fun resendVisibility() {
+        binding.resendTxt.isVisible = true
+    }
+
+    fun generateCode() {
+        binding.code.text = presenter.generateCode()
+    }
+
+    fun error(message:String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT)
+            .show()
     }
 }

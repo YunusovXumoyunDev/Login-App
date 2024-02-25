@@ -20,6 +20,9 @@ class LoginPresenter(
     fun registerClick() {
         view.registerClick()
     }
+    fun forgetClick(){
+        view.forgetClick()
+    }
     fun signInClick(){
         if (checkLogin()&&checkPassword()){
             view.signIn()

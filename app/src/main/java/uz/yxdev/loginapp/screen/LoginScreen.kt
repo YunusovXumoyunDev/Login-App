@@ -30,6 +30,9 @@ class LoginScreen : Fragment(R.layout.screen_login) {
         binding.signInBtn.setOnClickListener {
             presenter.signInClick()
         }
+        binding.forgetPassword.setOnClickListener {
+            presenter.forgetClick()
+        }
 
     }
 
@@ -42,6 +45,16 @@ class LoginScreen : Fragment(R.layout.screen_login) {
                 "Create Screen"
             )
             addToBackStack(null)
+        }
+    }
+    fun forgetClick(){
+        parentFragmentManager.commit {
+            setReorderingAllowed(true)
+            replace(
+                R.id.fragment,
+                ForgetPasswordScreen(),
+                "Forget Screen"
+            )
         }
     }
     fun showForgetPassword(){
