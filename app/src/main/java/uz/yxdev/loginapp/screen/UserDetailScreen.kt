@@ -18,12 +18,21 @@ class UserDetailScreen : Fragment(R.layout.screen_user_detail) {
         presenter= UserPresenter(this,repository)
         _binding = ScreenUserDetailBinding.bind(view)
         loadUi()
+        loadUiClickable()
     }
     private fun loadUi(){
         binding.name.text=repository.getName()
-        binding.login.text=repository.getName()
-        binding.phone.text=repository.getName()
-        binding.email.text=repository.getName()
+        binding.login.text=repository.getLogin()
+        binding.phone.text=repository.getNumber()
+        binding.email.text=repository.getEmail()
+    }
+    private fun loadUiClickable(){
+        binding.back.setOnClickListener {
+            presenter.backClick()
+        }
+    }
+    fun backClick(){
+        parentFragmentManager.popBackStack()
     }
     override fun onDestroyView() {
         super.onDestroyView()

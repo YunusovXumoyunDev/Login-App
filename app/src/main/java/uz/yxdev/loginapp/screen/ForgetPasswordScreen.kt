@@ -33,6 +33,9 @@ class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
         binding.enterBtn.setOnClickListener {
             presenter.enterClick()
         }
+        binding.back.setOnClickListener {
+            presenter.backClick()
+        }
     }
     private fun startLoadUi() {
         binding.loginEtLy.isVisible = true
@@ -42,7 +45,9 @@ class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
     private fun txtChange(txt: String) {
         binding.txtLogin.text = txt
     }
-
+    fun setTimer(timer:String){
+        binding.timer.text=timer
+    }
     fun hideLogin() {
         binding.loginEtLy.isVisible = false
         binding.sendLoginBtn.isVisible = false
@@ -63,7 +68,7 @@ class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
         binding.codeTxt.isVisible = false
         binding.code.isVisible = false
         binding.sendCodeBtn.isVisible = false
-        binding.timer.isVisible=true
+        binding.timer.isVisible=false
     }
 
     fun showPassword() {
@@ -75,9 +80,12 @@ class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
 
     fun getLogin(): String = binding.loginEt.text.toString()
     fun getCode(): String = binding.codeEt.text.toString()
-    fun getPassword():String=binding.newPasswordEt.toString()
-    fun getConfirmPassword():String=binding.confirmNewPasswordEt.toString()
+    fun getPassword():String=binding.newPasswordEt.text.toString()
+    fun getConfirmPassword():String=binding.confirmNewPasswordEt.text.toString()
     fun enterClick(){
+        parentFragmentManager.popBackStack()
+    }
+    fun backClick(){
         parentFragmentManager.popBackStack()
     }
     fun resendVisibility() {
@@ -85,7 +93,7 @@ class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
     }
 
     fun generateCode() {
-        binding.code.text = presenter.generateCode()
+        binding.code.text = presenter.generateCode().toString()
     }
 
     fun error(message:String) {

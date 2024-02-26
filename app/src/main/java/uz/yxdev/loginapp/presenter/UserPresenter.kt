@@ -7,4 +7,7 @@ class UserPresenter(
     private val view:UserDetailScreen,
     private val repository: AuthRepository
 ) {
+    fun backClick(){
+        view.backClick()
+    }
 }

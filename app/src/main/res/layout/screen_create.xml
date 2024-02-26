@@ -7,6 +7,24 @@
     android:background="@drawable/create_bg"
     tools:context=".screen.CreateScreen">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/back"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_circular"
+            android:elevation="4dp"
+            android:src="@drawable/ic_back_2" />
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,17 +36,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
-                android:layout_marginTop="15dp"
                 android:id="@+id/image"
                 android:layout_width="64dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="15dp"
                 android:src="@drawable/login_profile_icon"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/create_txt"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/create_txt"
@@ -39,10 +58,10 @@
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/name_et_ly"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image"
-                app:layout_constraintBottom_toTopOf="@id/name_et_ly"/>
+                app:layout_constraintTop_toBottomOf="@id/image" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_et_ly"

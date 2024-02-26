@@ -12,7 +12,9 @@ class CreatePresenter(
     init {
 
     }
-
+    fun backClick(){
+        view.backClick()
+    }
     fun create() {
         val name = view.getName()
         val login = view.getLogin()

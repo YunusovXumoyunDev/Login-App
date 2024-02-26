@@ -17,6 +17,7 @@ class ForgetPresenter(
         val second = timer % 60
         val minText = if (min < 10) "0$min" else min.toString()
         val secondText = if (second < 10) "0$second" else second.toString()
+        view.setTimer("$minText:$secondText")
         return "$minText:$secondText"
     }
 
@@ -34,13 +35,14 @@ class ForgetPresenter(
         }
         timer.start()
     }
-
+    fun backClick(){
+        view.backClick()
+    }
     fun enterClick() {
         val password = view.getPassword()
         val confirmPassword = view.getConfirmPassword()
         if (password.checkPassword()) {
             if (password == confirmPassword) {
-                view.enterClick()
                 repository.create(
                     login = repository.getLogin(),
                     name = repository.getName(),
@@ -51,6 +53,7 @@ class ForgetPresenter(
             } else {
                 view.error("Password va ConfirmPassword bir xil emas!")
             }
+            view.enterClick()
         } else {
             view.error("Parol to'g'ri kiritilmagan")
         }
@@ -67,7 +70,7 @@ class ForgetPresenter(
     }
 
     fun sendCodeClick() {
-        if (view.getCode().equals(generateCode()) && view.getCode().equals("-1")) {
+        if (view.getCode().toInt()==code ) {
             view.hideCode()
             view.showPassword()
         } else {
@@ -75,9 +78,9 @@ class ForgetPresenter(
         }
     }
 
-    fun generateCode(): String {
+    fun generateCode(): Int {
         code = Random.nextInt(1000, 10000)
-        return code.toString()
+        return code
     }
 
 }

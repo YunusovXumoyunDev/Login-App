@@ -55,6 +55,7 @@ class LoginScreen : Fragment(R.layout.screen_login) {
                 ForgetPasswordScreen(),
                 "Forget Screen"
             )
+            addToBackStack(null)
         }
     }
     fun showForgetPassword(){

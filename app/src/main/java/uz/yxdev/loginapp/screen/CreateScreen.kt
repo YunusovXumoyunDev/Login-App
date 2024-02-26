@@ -26,6 +26,12 @@ class CreateScreen : Fragment(R.layout.screen_create) {
         binding.createBtn.setOnClickListener {
             presenter.create()
         }
+        binding.back.setOnClickListener {
+            presenter.backClick()
+        }
+    }
+    fun backClick(){
+        parentFragmentManager.popBackStack()
     }
 
     fun getLogin(): String = binding.loginEt.text.toString()

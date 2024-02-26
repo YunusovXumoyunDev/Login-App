@@ -6,22 +6,33 @@
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screen.UserDetailScreen">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/image">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/back"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_circular"
+            android:elevation="4dp"
+            android:src="@drawable/ic_back" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Profile"
             android:textColor="@color/black"
-            android:layout_gravity="center"
             android:textSize="26sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 <ImageView
     android:layout_marginTop="20dp"
@@ -39,7 +50,7 @@
         android:layout_marginHorizontal="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image">
@@ -47,14 +58,15 @@
             android:layout_width="wrap_content"
             android:text="Name:  "
             android:textColor="@color/black"
-            android:textSize="36sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:text="Xumoyun"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
@@ -63,7 +75,7 @@
         android:layout_marginHorizontal="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_ly">
@@ -71,14 +83,15 @@
             android:layout_width="wrap_content"
             android:text="Login:  "
             android:textColor="@color/black"
-            android:textSize="36sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/login"
             android:layout_width="wrap_content"
             android:text="Xumoyun123"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
@@ -87,7 +100,7 @@
         android:layout_marginHorizontal="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_ly">
@@ -95,14 +108,15 @@
             android:layout_width="wrap_content"
             android:text="Phone:  "
             android:textColor="@color/black"
-            android:textSize="36sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:text="937726204"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
@@ -111,7 +125,7 @@
         android:layout_marginHorizontal="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_ly">
@@ -119,14 +133,15 @@
             android:layout_width="wrap_content"
             android:text="Email:  "
             android:textColor="@color/black"
-            android:textSize="36sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:text="yunusovhumoyun13@gmail.com"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
