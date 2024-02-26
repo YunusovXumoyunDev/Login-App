@@ -1,6 +1,7 @@
 package uz.yxdev.loginapp.screen
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -15,7 +16,7 @@ class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
     private val binding: ScreenForgetPasswordBinding get() = _binding!!
     private lateinit var repository: AuthRepository
     private lateinit var presenter: ForgetPresenter
-
+    private val time = 120
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = ScreenForgetPasswordBinding.bind(view)
         repository = AuthRepository(requireContext())
@@ -23,7 +24,8 @@ class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
         startLoadUi()
         loadUiClickable()
     }
-    private fun loadUiClickable(){
+
+    private fun loadUiClickable() {
         binding.sendLoginBtn.setOnClickListener {
             presenter.sendLoginClick()
         }
@@ -37,6 +39,22 @@ class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
             presenter.backClick()
         }
     }
+
+    fun startTimer() {
+        generateCode()
+        val timer = object : CountDownTimer(time * 1000L, 1000L) {
+            override fun onTick(millisUntilFinished: Long) {
+                presenter.loadTimer(millisUntilFinished / 1000)
+            }
+
+            override fun onFinish() {
+                presenter.code = -1
+                resendVisibility()
+            }
+        }
+        timer.start()
+    }
+
     private fun startLoadUi() {
         binding.loginEtLy.isVisible = true
         binding.sendLoginBtn.isVisible = true
@@ -45,9 +63,11 @@ class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
     private fun txtChange(txt: String) {
         binding.txtLogin.text = txt
     }
-    fun setTimer(timer:String){
-        binding.timer.text=timer
+
+    fun setTimer(timer: String) {
+        binding.timer.text = timer
     }
+
     fun hideLogin() {
         binding.loginEtLy.isVisible = false
         binding.sendLoginBtn.isVisible = false
@@ -60,7 +80,7 @@ class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
         binding.codeTxt.isVisible = true
         binding.code.isVisible = true
         binding.sendCodeBtn.isVisible = true
-        binding.timer.isVisible=true
+        binding.timer.isVisible = true
     }
 
     fun hideCode() {
@@ -68,26 +88,28 @@ class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
         binding.codeTxt.isVisible = false
         binding.code.isVisible = false
         binding.sendCodeBtn.isVisible = false
-        binding.timer.isVisible=false
+        binding.timer.isVisible = false
     }
 
     fun showPassword() {
         txtChange("Yangi parolni kiriting")
         binding.newPasswordEtLy.isVisible = true
         binding.confirmNewPasswordEtLy.isVisible = true
-        binding.enterBtn.isVisible=true
+        binding.enterBtn.isVisible = true
     }
 
     fun getLogin(): String = binding.loginEt.text.toString()
     fun getCode(): String = binding.codeEt.text.toString()
-    fun getPassword():String=binding.newPasswordEt.text.toString()
-    fun getConfirmPassword():String=binding.confirmNewPasswordEt.text.toString()
-    fun enterClick(){
+    fun getPassword(): String = binding.newPasswordEt.text.toString()
+    fun getConfirmPassword(): String = binding.confirmNewPasswordEt.text.toString()
+    fun enterClick() {
         parentFragmentManager.popBackStack()
     }
-    fun backClick(){
+
+    fun backClick() {
         parentFragmentManager.popBackStack()
     }
+
     fun resendVisibility() {
         binding.resendTxt.isVisible = true
     }
@@ -96,7 +118,7 @@ class ForgetPasswordScreen : Fragment(R.layout.screen_forget_password) {
         binding.code.text = presenter.generateCode().toString()
     }
 
-    fun error(message:String) {
+    fun error(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT)
             .show()
     }

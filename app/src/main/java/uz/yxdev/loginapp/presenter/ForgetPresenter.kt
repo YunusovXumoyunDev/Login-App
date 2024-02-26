@@ -1,6 +1,5 @@
 package uz.yxdev.loginapp.presenter
 
-import android.os.CountDownTimer
 import uz.yxdev.loginapp.data.repository.AuthRepository
 import uz.yxdev.loginapp.data.utils.checkPassword
 import uz.yxdev.loginapp.screen.ForgetPasswordScreen
@@ -10,9 +9,9 @@ class ForgetPresenter(
     private val view: ForgetPasswordScreen,
     private val repository: AuthRepository
 ) {
-    private var code = -1
-    private val time = 120
-    private fun loadTimer(timer: Long): String {
+    var code = -1
+
+    fun loadTimer(timer: Long): String {
         val min = timer / 60
         val second = timer % 60
         val minText = if (min < 10) "0$min" else min.toString()
@@ -21,20 +20,6 @@ class ForgetPresenter(
         return "$minText:$secondText"
     }
 
-    private fun startTimer() {
-        view.generateCode()
-        val timer = object : CountDownTimer(time * 1000L, 1000L) {
-            override fun onTick(millisUntilFinished: Long) {
-                loadTimer(millisUntilFinished / 1000)
-            }
-
-            override fun onFinish() {
-                code = -1
-                view.resendVisibility()
-            }
-        }
-        timer.start()
-    }
     fun backClick(){
         view.backClick()
     }
@@ -63,7 +48,7 @@ class ForgetPresenter(
         if (view.getLogin() == repository.getLogin()) {
             view.hideLogin()
             view.showCode()
-            startTimer()
+            view.startTimer()
         } else {
             view.error("Siz kiritgan login ro'yxatdan o'tmagan!")
         }
